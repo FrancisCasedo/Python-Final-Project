@@ -1,5 +1,6 @@
 import tkinter as tk
 root = tk.Tk()
+
 PinCheck = ""
 PinNumber = ""
 Amount = ""
@@ -29,39 +30,36 @@ def button_click(value):
         print(PinCheck)
 
 def main():
-
     root.title("Keypad")
+    frame = tk.Frame(root, bd=5, relief="solid", padx=20, pady=20)
+    frame.grid(row=0, column=0, padx=12, pady=12)
 
-    # Create a frame to act as the outer box
-    frame = tk.Frame(root, bd=5, relief="solid", padx=5, pady=5)
-    frame.grid(row=0, column=0, padx=10, pady=10)
+    # B U T T O N S  - - - - - - - - - - - - -
+    btn1 = tk.Button(frame, text="1", width=8, height=2, command=lambda: button_click("1"), background = "grey")
+    btn2 = tk.Button(frame, text="2", width=8, height=2, command=lambda: button_click("2"), background = "grey")
+    btn3 = tk.Button(frame, text="3", width=8, height=2, command=lambda: button_click("3"), background = "grey")
+    btnCancel = tk.Button(frame, text="<< Cancel", width=8, height=2, command=lambda: button_click("Cancel"), background = "red")
 
-    # Create buttons individually
-    btn1 = tk.Button(frame, text="1", width=10, height=2, command=lambda: button_click("1"))
-    btn2 = tk.Button(frame, text="2", width=10, height=2, command=lambda: button_click("2"))
-    btn3 = tk.Button(frame, text="3", width=10, height=2, command=lambda: button_click("3"))
-    btnCan = tk.Button(frame, text="<< Cancel", width=10, height=2, command=lambda: button_click("Cancel"))
+    btn4 = tk.Button(frame, text="4", width=8, height=2, command=lambda: button_click("4"), background = "grey")
+    btn5 = tk.Button(frame, text="5", width=8, height=2, command=lambda: button_click("5"), background = "grey")
+    btn6 = tk.Button(frame, text="6", width=8, height=2, command=lambda: button_click("6"), background = "grey")
+    btnClear = tk.Button(frame, text="< Clear", width=8, height=2, command=lambda: button_click("Clear"), background = "yellow")
 
-    btn4 = tk.Button(frame, text="4", width=10, height=2, command=lambda: button_click("4"))
-    btn5 = tk.Button(frame, text="5", width=10, height=2, command=lambda: button_click("5"))
-    btn6 = tk.Button(frame, text="6", width=10, height=2, command=lambda: button_click("6"))
-    btnClear = tk.Button(frame, text="< Clear", width=10, height=2, command=lambda: button_click("Clear"))
+    btn7 = tk.Button(frame, text="7", width=8, height=2, command=lambda: button_click("7"), background = "grey")
+    btn8 = tk.Button(frame, text="8", width=8, height=2, command=lambda: button_click("8"), background = "grey")
+    btn9 = tk.Button(frame, text="9", width=8, height=2, command=lambda: button_click("9"), background = "grey")
+    btnEnter = tk.Button(frame, text="Enter", width=8, height=2, command=lambda: button_click("Enter"), background = "green")
 
-    btn7 = tk.Button(frame, text="7", width=10, height=2, command=lambda: button_click("7"))
-    btn8 = tk.Button(frame, text="8", width=10, height=2, command=lambda: button_click("8"))
-    btn9 = tk.Button(frame, text="9", width=10, height=2, command=lambda: button_click("9"))
-    btnEnter = tk.Button(frame, text="Enter", width=10, height=2, command=lambda: button_click("Enter"))
+    btnEmpty1 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "grey")
+    btn0 = tk.Button(frame, text="0", width=8, height=2, command=lambda: button_click("0"), background = "grey")
+    btnEmpty2 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "grey")
+    btnEmpty3 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "white")
 
-    btnEmpty1 = tk.Button(frame, text="", width=10, height=2, state="disabled")  # Disabled empty button
-    btn0 = tk.Button(frame, text="0", width=10, height=2, command=lambda: button_click("0"))
-    btnEmpty2 = tk.Button(frame, text="", width=10, height=2, state="disabled")  # Disabled empty button
-    btnEmpty3 = tk.Button(frame, text="", width=10, height=2, state="disabled")  # Disabled empty button
-
-    # Grid placement
+    # L A Y O U T - - - - - - - - - - - - -
     btn1.grid(row=0, column=0, padx=2, pady=2)
     btn2.grid(row=0, column=1, padx=2, pady=2)
     btn3.grid(row=0, column=2, padx=2, pady=2)
-    btnCan.grid(row=0, column=3, padx=2, pady=2)
+    btnCancel.grid(row=0, column=3, padx=2, pady=2)
 
     btn4.grid(row=1, column=0, padx=2, pady=2)
     btn5.grid(row=1, column=1, padx=2, pady=2)
