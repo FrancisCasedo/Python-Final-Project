@@ -1,11 +1,9 @@
 import tkinter as tk
 root = tk.Tk()
 root.geometry("600x400+300+100")
-PinCheck = ""
-PinNumber = ""
 Amount = ""
-Display = ""
-frame = tk.Frame(root, bd=5, relief="solid", padx=20, pady=20)
+AmountCheck = "0"
+frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20)
 
 def Last_Screen():
     pass
@@ -14,48 +12,49 @@ def Next_Screen():
     pass
 
 def button_click(value):
-    # tries = 0
-    global PinNumber
-    global PinCheck
-    # while tries > 6:
-    if len(PinCheck) == 6:
-        PinCheck = " "
-        lblNumField = tk.Label(root, text = PinCheck, width = 14, height = 4, font = ("Arial", 10))
-        lblNumField.place(x = 250, y = 20)
+    global AmountCheck
+    global Amount
 
+    if value == "Cancel":
+        Last_Screen()
+    elif value == "Clear":
+        AmountCheck = AmountCheck[:-1] if len(AmountCheck) > 1 else "0"
+        decimal = float(AmountCheck)
+        formatted = f"{decimal:.2f}"
+        lblNumField = tk.Label(root, text=formatted, width=25, height=4, font=("Arial", 10))
+        lblNumField.place(x=210, y=20)
+    elif value == "Enter":
+        decimal = float(AmountCheck)
+        formatted = f"{decimal:.2f}"
+        lblNumField = tk.Label(root, text=formatted, width=25, height=4, font=("Arial", 10))
+        lblNumField.place(x=210, y=20)
+        Amount = int(AmountCheck)
     else:
-        if value == "Cancel":
-            Last_Screen()
-        elif value == "Clear":
-            PinCheck = PinCheck[:-1]
-            lblNumField = tk.Label(root, text = PinCheck, width = 14, height = 4, font = ("Arial", 10))
-
-        elif value == "Enter":
-            PinNumber = PinCheck
-            lblNumField = tk.Label(root, text = PinCheck, width = 14, height = 4, font = ("Arial", 10))
-            lblNumField.place(x = 250, y = 20)
-            # if PinNumber == PIN:
-                # Next_Screen()
-            # else:
-            #   tries += 1
+        last_amount = AmountCheck + value
+        if float(last_amount) > 20000:
+            lblExceed = tk.Label(root, text="Exceeded possible amount....", width=25, height=4, font=("Arial", 10))
+            lblExceed.place(x=210, y=20)
+            AmountCheck = "0"
         else:
-            PinCheck += str(value)
+            if AmountCheck == "0":
+                AmountCheck = value
+            else:
+                AmountCheck += value
+            decimal = float(AmountCheck)
+            formatted = f"{decimal:.2f}"
+            lblNumField = tk.Label(root, text=formatted, width=25, height=4, font=("Arial", 10))
+            lblNumField.place(x=210, y=20)
 
-    lblNumField = tk.Label(root, text = PinCheck, width = 14, height = 4, font = ("Arial", 10))
-    lblNumField.place(x = 250, y = 20)
 
-def main():
+
+def keypad2():
+    global PinNumber
     root.title("Keypad")
 
     frame.grid(row=0, column=0, padx=12, pady=12)
-    frame.place(x = 140, y = 100)
-    global PinNumber
-
-    # T E X T - - - - - - - - - - - - - -
-
+    frame.place(x = 138 , y = 150)
 
     # B U T T O N S  - - - - - - - - - - - - -
-
     btn1 = tk.Button(frame, text="1", width=8, height=2, command=lambda: button_click("1"), background = "grey")
     btn2 = tk.Button(frame, text="2", width=8, height=2, command=lambda: button_click("2"), background = "grey")
     btn3 = tk.Button(frame, text="3", width=8, height=2, command=lambda: button_click("3"), background = "grey")
@@ -77,7 +76,6 @@ def main():
     btnEmpty3 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "white")
 
     # L A Y O U T - - - - - - - - - - - - -
-
     btn1.grid(row=0, column=0, padx=2, pady=2)
     btn2.grid(row=0, column=1, padx=2, pady=2)
     btn3.grid(row=0, column=2, padx=2, pady=2)
@@ -100,6 +98,6 @@ def main():
 
 
 
-main()
+keypad2()
 
 root.mainloop()
