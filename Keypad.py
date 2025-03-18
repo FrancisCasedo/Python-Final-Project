@@ -3,8 +3,7 @@ root = tk.Tk()
 root.geometry("600x400+300+100")
 PinCheck = ""
 PinNumber = ""
-Amount = ""
-Display = ""
+
 frame = tk.Frame(root, bd=5, relief="solid", padx=20, pady=20)
 
 def Last_Screen():
@@ -41,6 +40,7 @@ def button_click(value):
         else:
             PinCheck += str(value)
 
+    
     lblNumField = tk.Label(root, text = PinCheck, width = 14, height = 4, font = ("Arial", 10))
     lblNumField.place(x = 250, y = 20)
 

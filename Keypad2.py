@@ -21,18 +21,20 @@ def button_click(value):
         AmountCheck = AmountCheck[:-1] if len(AmountCheck) > 1 else "0"
         decimal = float(AmountCheck)
         formatted = f"{decimal:.2f}"
-        lblNumField = tk.Label(root, text=formatted, width=25, height=4, font=("Arial", 10))
+        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10))
         lblNumField.place(x=210, y=20)
     elif value == "Enter":
         decimal = float(AmountCheck)
         formatted = f"{decimal:.2f}"
-        lblNumField = tk.Label(root, text=formatted, width=25, height=4, font=("Arial", 10))
+        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10))
         lblNumField.place(x=210, y=20)
         Amount = int(AmountCheck)
     else:
         last_amount = AmountCheck + value
         if float(last_amount) > 20000:
-            lblExceed = tk.Label(root, text="Exceeded possible amount....", width=25, height=4, font=("Arial", 10))
+            lblExceed = tk.Label(root, text="Exceeded possible amount....", width=25, height=1, font=("Arial", 10))
+            lblsign = tk.Label(root, text = " ", width = 1, height = 1, font = ("Arial", 10))
+            lblsign.place(x = 190, y = 20)
             lblExceed.place(x=210, y=20)
             AmountCheck = "0"
         else:
@@ -42,7 +44,9 @@ def button_click(value):
                 AmountCheck += value
             decimal = float(AmountCheck)
             formatted = f"{decimal:.2f}"
-            lblNumField = tk.Label(root, text=formatted, width=25, height=4, font=("Arial", 10))
+            lblsign = tk.Label(root, text = "₱", width = 1, height = 1, font = ("Arial", 10))
+            lblsign.place(x = 195, y = 20)
+            lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10))
             lblNumField.place(x=210, y=20)
 
 
