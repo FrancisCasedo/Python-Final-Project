@@ -5,6 +5,7 @@ root = tk.Tk()
 root.state('zoomed')
 Amount = ""
 AmountCheck = "0"
+texts = ("Arial", 19, "bold")
 frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
 MenuFrame = tk.Frame(root, bd=1, relief="solid", pady=20, width= 1200, height= 300, bg = "#FFFFFE")
 frame2 = tk.Frame(root,bd = 2, relief="solid", width = 250, height = 40, bg = "#FFFFFE")
@@ -27,9 +28,10 @@ def button_click(value):
     elif value == "Enter":
         decimal = float(AmountCheck)
         formatted = f"{decimal:.2f}"
-        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10), bg = "#FFFFFE")
+        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10,"bold"), bg = "#FFFFFE")
         lblNumField.place(x=558, y=150)
         Amount = int(AmountCheck)
+        root.after(2000,Receipt)
     else:
         last_amount = AmountCheck + value
         if float(last_amount) > 20000:
@@ -113,6 +115,47 @@ def Keypad():
     btnEmpty2.grid(row=3, column=2, padx=2, pady=2)
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
 
+def Receipt():
+    global MenuFrame
+    global frame
+    global frame2
+    for widget in root.winfo_children():
+        widget.destroy()
+    MenuFrame = tk.Frame(root, bd = 0, relief="solid", width= 1200, height= 300,pady=20)
+    frame3 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
+    frame4 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
+    frame = tk.Frame(MenuFrame, bd=1, relief="solid",width = 604, height = 140,bg = "#FFFFFE")
+    frame2 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604, height = 140,bg = "#FFFFFE")
+
+    lblOption1 = tk.Label(frame, text = "Yes", width = 8, height = 1, font = texts , bg = "#FFFFFE" )
+    lblOption3 = tk.Label(frame3, text = "No", width = 15, height = 1, font = texts , bg = "#FFFFFE" )
+    lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"))
+    lblHeader = tk.Label(root, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11))
+
+    btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"))
+    btn2 = tk.Button(frame2, width = 1, height = 0, font = ("arial"))
+    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"))
+    btn4 = tk.Button(frame4, width = 1, height = 0, font = ("arial"))
+
+
+
+
+    # F R A M E - - - - - - --- - - - - - -
+    MenuFrame.place(x = 40, y = 50)
+    frame.grid(row = 0, column = 0)
+    frame2.grid(row = 1, column = 0)
+    frame3.grid(row = 0, column = 1)
+    frame4.grid(row = 1, column = 1)
+    # L A B E L   - - - - - - - - - - - - -
+    lblBank.place(x=-90, y=5)
+    lblOption1.place(x = 300, y = 48)
+    lblOption3.place(x = 119, y = 48)
+
+    # B U T T O N - - - - - - - --
+    btn1.place(x = 60, y = 48)
+    btn2.place(x = 60, y = 48)
+    btn3.place(x = 550, y = 48)
+    btn4.place(x = 550, y = 48)
 
 Keypad()
 
