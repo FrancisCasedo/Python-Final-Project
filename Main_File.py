@@ -1,7 +1,8 @@
 import mysql.connector
 from Account_Class import *
 import Main_menu
-import PIN
+import PINCheck
+import tkinter as tk
 
 def data():
     db = mysql.connector.connect(
@@ -20,7 +21,9 @@ def data():
 
 def main():
     data()
-    PIN.EnterPIN()
+    PINCheck.EnterPIN(root)  # Now this works
 
-
-main()
+if __name__ == "__main__":
+    root = tk.Tk()  
+    main()
+    root.mainloop()  # Ensure main loop is only here

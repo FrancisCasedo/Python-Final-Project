@@ -1,4 +1,4 @@
-import tkinter as tk
+
 
 def mainMenu():
     texts = ("Arial", 19, "bold")

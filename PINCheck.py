@@ -1,7 +1,5 @@
-
 import tkinter as tk
 from Account_Class import *
-import Main_menu
 import Main_File
 
 root = tk.Tk()
@@ -9,6 +7,10 @@ MenuFrame = tk.Frame(root, bd=1, relief="solid", pady=20, width= 1200, height= 3
 frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
 frame2 = tk.Frame(root,bd = 2, relief="solid", width = 250, height = 40, bg = "#FFFFFE")
 
+PinCheck = ""
+PinNumber = ""
+tries = 1
+asterisk = ""
 
 
 def button_click(value):
@@ -16,7 +18,6 @@ def button_click(value):
     global PinNumber
     global PinCheck
     global asterisk
-    global testPin
     
     if tries != 6:
         if len(asterisk) == 6:
@@ -43,19 +44,23 @@ def button_click(value):
                 lblNumField.place(x=544, y=150)
 
             elif value == "Enter":
-                PinNumber = PinCheck
-                lblNumField = tk.Label(root, text=asterisk, width=25, height=1, font=("Arial", 10, "bold"), bg = "#FFFFFE")
-                lblNumField.place(x=544, y=150)
-                if PinNumber == testPin:
-                    lblNumField = tk.Label(root, text = "Correct PIN", width = 25, height = 1, font=("Arial", 10, "bold"), bg = "#FFFFFE", fg = "dark green")
+                    PinNumber = PinCheck
+                    lblNumField = tk.Label(root, text=asterisk, width=25, height=1, font=("Arial", 10, "bold"), bg = "#FFFFFE")
                     lblNumField.place(x=544, y=150)
-                    # root.after(2000, mainMenu)
-                else:
-                    lblExceed = tk.Label(root, text="Invalid PIN, try again...", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
-                    lblExceed.place(x=545, y=150)
-                    PinCheck = ""
-                    asterisk = ""
-                    tries += 1
+                    if Account.instance:
+                        for instances in Account.instance:
+                            print(instances.PINnum == PinNumber)
+                            if PinNumber == instances.PINnum:
+                                lblNumField = tk.Label(root, text = "Correct PIN", width = 25, height = 1, font=("Arial", 10, "bold"), bg = "#FFFFFE", fg = "dark green")
+                                lblNumField.place(x=544, y=150)
+                                break
+                                # root.after(2000, mainMenu)
+                            else:
+                                lblExceed = tk.Label(root, text="Invalid PIN, try again...", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
+                                lblExceed.place(x=545, y=150)
+                                PinCheck = ""
+                                asterisk = ""
+                                tries += 1
             else:
                 PinCheck += str(value)
                 asterisk += "*"
@@ -134,4 +139,5 @@ def EnterPIN():
     root.mainloop()
 
 if __name__ == "__main__":
+    data()
     EnterPIN()

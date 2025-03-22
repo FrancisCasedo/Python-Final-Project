@@ -3,9 +3,9 @@ import mysql.connector
 class Account:
     instance = []
 
-    def __init__(self, Card_number, savings, deposit, PINnum):
-        self.Card_number = Card_number
-        self.PINnum = PINnum
+    def __init__(self, Card_number,PINnum, savings, deposit, ):
+        self.Card_number = str(Card_number)
+        self.PINnum = str(PINnum)
         self.savings = savings
         self.deposit = deposit
         Account.instance.append(self)
