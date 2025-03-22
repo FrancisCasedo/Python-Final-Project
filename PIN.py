@@ -1,20 +1,15 @@
 
 import tkinter as tk
+from Account_Class import *
+import Main_menu
+import Main_File
+
 root = tk.Tk()
-root.state('zoomed')
 MenuFrame = tk.Frame(root, bd=1, relief="solid", pady=20, width= 1200, height= 300, bg = "#FFFFFE")
 frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
 frame2 = tk.Frame(root,bd = 2, relief="solid", width = 250, height = 40, bg = "#FFFFFE")
 
-asterisk = ""
-PinCheck = ""
-PinNumber = ""
-testPin = "90902"
-tries = 0
-def Last_Screen():
-    pass
-def Next_Screen():
-    print("Gumana naman")
+
 
 def button_click(value):
     global tries
@@ -22,6 +17,7 @@ def button_click(value):
     global PinCheck
     global asterisk
     global testPin
+    
     if tries != 6:
         if len(asterisk) == 6:
 
@@ -37,7 +33,7 @@ def button_click(value):
 
         else:
             if value == "Cancel":
-                Last_Screen()
+                exit()
             elif value == "Clear":
 
                 PinCheck = PinCheck[:-1]
@@ -47,7 +43,6 @@ def button_click(value):
                 lblNumField.place(x=544, y=150)
 
             elif value == "Enter":
-                # from Main_menu import mainMenu
                 PinNumber = PinCheck
                 lblNumField = tk.Label(root, text=asterisk, width=25, height=1, font=("Arial", 10, "bold"), bg = "#FFFFFE")
                 lblNumField.place(x=544, y=150)
@@ -56,11 +51,11 @@ def button_click(value):
                     lblNumField.place(x=544, y=150)
                     # root.after(2000, mainMenu)
                 else:
-                  lblExceed = tk.Label(root, text="Invalid PIN, try again...", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
-                  lblExceed.place(x=545, y=150)
-                  PinCheck = ""
-                  asterisk = ""
-                  tries += 1
+                    lblExceed = tk.Label(root, text="Invalid PIN, try again...", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
+                    lblExceed.place(x=545, y=150)
+                    PinCheck = ""
+                    asterisk = ""
+                    tries += 1
             else:
                 PinCheck += str(value)
                 asterisk += "*"
@@ -73,8 +68,10 @@ def button_click(value):
 
 
 def EnterPIN():
-    frame2.place(x = 524, y = 140)
+    
+    root.state('zoomed')
     global PinNumber
+    frame2.place(x = 524, y = 140)
     root.title("Keypad")
 
     # M E N U - - - - - - - - - -- - - - -
@@ -114,7 +111,7 @@ def EnterPIN():
     btnEmpty2 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty3 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "white")
 
-    # L A Y O U T - - - - - - - - - - - - -
+        # L A Y O U T - - - - - - - - - - - - -
     btn1.grid(row=0, column=0, padx=2, pady=2)
     btn2.grid(row=0, column=1, padx=2, pady=2)
     btn3.grid(row=0, column=2, padx=2, pady=2)
@@ -134,7 +131,7 @@ def EnterPIN():
     btn0.grid(row=3, column=1, padx=2, pady=2)
     btnEmpty2.grid(row=3, column=2, padx=2, pady=2)
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
+    root.mainloop()
 
-
-EnterPIN()
-root.mainloop()
+if __name__ == "__main__":
+    EnterPIN()

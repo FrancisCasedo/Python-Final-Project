@@ -1,9 +1,15 @@
+import mysql.connector
+
 class Account:
-    def __init__(self, fname,savings, deposit, PINnum):
-        self.fname = fname
+    instance = []
+
+    def __init__(self, Card_number, savings, deposit, PINnum):
+        self.Card_number = Card_number
+        self.PINnum = PINnum
         self.savings = savings
         self.deposit = deposit
-        self.PINnum = PINnum
+        Account.instance.append(self)
+
 
     def Smoney(self):
         return self.savings
@@ -26,6 +32,24 @@ class Account:
         self.savings += add
         return self.savings
 
-    def AddSavings(self, add):
+    def AddDeposit(self, add):
         self.deposit += add
         return self.deposit
+
+def data():
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="credit_card"
+    )
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM CARD")
+
+    for row in cursor.fetchall():
+        Account(row[0], row[1], row[2], row[3])
+
+    db.close()
+
+
+
