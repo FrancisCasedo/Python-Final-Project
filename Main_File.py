@@ -21,9 +21,7 @@ def data():
 
 def main():
     data()
-    PINCheck.EnterPIN(root)  # Now this works
+    PINCheck.EnterPIN()
 
 if __name__ == "__main__":
-    root = tk.Tk()  
     main()
-    root.mainloop()  # Ensure main loop is only here

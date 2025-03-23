@@ -3,11 +3,11 @@ import mysql.connector
 class Account:
     instance = []
 
-    def __init__(self, Card_number,PINnum, savings, deposit, ):
+    def __init__(self, Card_number,PINnum, tbalance, abalance ):
         self.Card_number = str(Card_number)
         self.PINnum = str(PINnum)
-        self.savings = savings
-        self.deposit = deposit
+        self.total_balance = tbalance
+        self.available_balance = abalance
         Account.instance.append(self)
 
 
@@ -20,21 +20,17 @@ class Account:
     def CheckPin(self):
         return self.PINnum
 
-    def SpendSavings(self, spend):
-        self.savings -= spend
-        return self.savings
+    def SpendTbalance(self, spend):
+        self.total_balance -= spend
 
-    def SpendDeposit(self, spend):
-        self.deposit -= spend
-        return self.deposit
+    def SpendAbalance(self, spend):
+        self.available_balance -= spend
 
-    def AddSavings(self, add):
-        self.savings += add
-        return self.savings
+    def AddTbalance(self, add):
+        self.total_balance += add
 
-    def AddDeposit(self, add):
-        self.deposit += add
-        return self.deposit
+    def AddAbalance(self, add):
+        self.available_balance += add
 
 def data():
     db = mysql.connector.connect(

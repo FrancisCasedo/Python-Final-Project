@@ -1,7 +1,6 @@
 import tkinter as tk
 from Account_Class import *
-import Main_File
-
+from Main_menu import *
 root = tk.Tk()
 MenuFrame = tk.Frame(root, bd=1, relief="solid", pady=20, width= 1200, height= 300, bg = "#FFFFFE")
 frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
@@ -53,8 +52,9 @@ def button_click(value):
                             if PinNumber == instances.PINnum:
                                 lblNumField = tk.Label(root, text = "Correct PIN", width = 25, height = 1, font=("Arial", 10, "bold"), bg = "#FFFFFE", fg = "dark green")
                                 lblNumField.place(x=544, y=150)
+                                root.after(2000, lambda: mainMenu(PinNumber))
+                                root.after(2000,root.destroy)
                                 break
-                                # root.after(2000, mainMenu)
                             else:
                                 lblExceed = tk.Label(root, text="Invalid PIN, try again...", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
                                 lblExceed.place(x=545, y=150)
@@ -139,5 +139,4 @@ def EnterPIN():
     root.mainloop()
 
 if __name__ == "__main__":
-    data()
     EnterPIN()
