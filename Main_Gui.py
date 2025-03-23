@@ -85,7 +85,7 @@ def EnterPIN():
     # M E N U - - - - - - - - - -- - - - -
     MenuFrame.place(x = 40, y = 2)
 
-    lblBank = tk.Label(MenuFrame, text = "Bank", width = 16, height = 1, font = ("Arial", 12,"bold"), bg = "#FFFFFE")
+    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12,"bold"), bg = "#FFFFFE")
     lblHeader = tk.Label(MenuFrame, text = "Enter PIN", width = 8, height = 1, font = ("Arial", 11,"bold"), bg = "#FFFFFE")
 
     # L A B E L   - - - - - - - - - - - - -
@@ -163,7 +163,7 @@ def mainMenu(pin):
     btn3 = tk.Button(frame3, width=1, height=0, font=("arial"),  command =  lambda: root.after(2000, lambda: CheckBalance(pin1)))
     btn4 = tk.Button(frame4, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: root.destroy()))
 
-    lblBank = tk.Label(root, text="Bank", width=4, height=1, font=texts, bg="#FFFFFE")
+    lblBank = tk.Label(root, text="National Metro Bank", width=16, height=1, font=texts, bg="#FFFFFE")
 
     lblOption1.place(x=300, y=48)
     lblOption2.place(x=300, y=48)
@@ -180,7 +180,7 @@ def mainMenu(pin):
     frame3.grid(row=0, column=1)
     frame4.grid(row=1, column=1)
 
-    lblBank.place(x=610, y=5)
+    lblBank.place(x=520, y=5)
     MenuFrame.place(x=40, y=40)
 
 
@@ -258,8 +258,8 @@ def KeypadDeposit(pin):
 
     # M E N U - - - - - - - - - -- - - - -
     MenuFrame.place(x = 40, y = 2)
-    lblBank = tk.Label(MenuFrame, text = "Bank", width = 16, height = 1, font = ("Arial", 12), bg = "#FFFFFE")
-    lblHeader = tk.Label(MenuFrame, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11), bg = "#FFFFFE")
+    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12), bg = "#FFFFFE")
+    lblHeader = tk.Label(MenuFrame, text = "DEPOSIT", width = 8, height = 1, font = ("Arial", 11, "bold"), bg = "#FFFFFE")
 
     # L A B E L   - - - - - - - - - - - - -
     lblBank.place(x=528, y=0)
@@ -429,7 +429,7 @@ def KeypadWithdraw(pin):
     root.title("Keypad")
     # M E N U - - - - - - - - - -- - - - -
     MenuFrame.place(x = 40, y = 2)
-    lblBank = tk.Label(MenuFrame, text = "Bank", width = 16, height = 1, font = ("Arial", 12), bg = "#FFFFFE")
+    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12), bg = "#FFFFFE")
     lblHeader = tk.Label(MenuFrame, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11), bg = "#FFFFFE")
 
     # L A B E L   - - - - - - - - - - - - -
@@ -496,13 +496,13 @@ def ReceiptWithdraw(pin,amount):
     frame = tk.Frame(MenuFrame, bd=1, relief="solid",width = 604, height = 140,bg = "#FFFFFE")
     frame2 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604, height = 140,bg = "#FFFFFE")
 
-    lblOption1 = tk.Label(frame, text = "Yes", width = 8, height = 1, font = texts , bg = "#FFFFFE" )
-    lblOption3 = tk.Label(frame3, text = "No", width = 15, height = 1, font = texts , bg = "#FFFFFE" )
+    lblOption1 = tk.Label(frame, text = "YES", width = 8, height = 1, font = texts , bg = "#FFFFFE" )
+    lblOption3 = tk.Label(frame3, text = "MENU", width = 15, height = 1, font = texts , bg = "#FFFFFE" )
     lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"))
     lblHeader = tk.Label(root, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11))
-    btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"), command= lambda: root.after(2000,Receipt.main("WITHDRAW",pin,str(amount),CardNum)))
+    btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"), command= lambda: root.after(2000,lambda:Receipt.main("WITHDRAW",pin,str(amount),CardNum)))
     btn2 = tk.Button(frame2, width = 1, height = 0, font = ("arial"))
-    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"))
+    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"), command = lambda:  root.after(2000,lambda:mainMenu(pin)))
     btn4 = tk.Button(frame4, width = 1, height = 0, font = ("arial"))
 
 
@@ -544,10 +544,10 @@ def CheckBalance(pin):
                 lblTbalancetxt = tk.Label(MenuFrame, text="TOTAL BALANCE", width=13, height=1, font=texts, bg="#FFFFFE")
                 lblAbalance = tk.Label(MenuFrame, text="PHP " + str(float(instances.available_balance)), width=12, height=1, font=texts, bg="#FFFFFE")
                 lblAbalancetxt = tk.Label(MenuFrame, text="AVAILABLE BALANCE", width=18, height=1, font=texts, bg="#FFFFFE")
-                lblBank = tk.Label(MenuFrame, text = "Bank", width = 16, height = 1, font = ("Arial", 12,"bold"), bg = "#FFFFFE")
+                lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12,"bold"), bg = "#FFFFFE")
                 lblHeader = tk.Label(MenuFrame, text = "Balance Inquiry", width = 12, height = 1, font = ("Arial", 11,"bold"), bg = "#FFFFFE")
 
-                btn1 = tk.Button(frame2, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: mainMenu()))
+                btn1 = tk.Button(frame2, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: mainMenu(pin)))
                 btn2 = tk.Button(frame3, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: Check_Balance.main(pin)))
 
                 MenuFrame.place(x = 40, y = 2)
