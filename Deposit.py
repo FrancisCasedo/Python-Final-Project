@@ -1,8 +1,4 @@
-# SAME GUI AS WITHDRAW BUT WITH DIFFERENT FUNCTION
 
-import tkinter as tk
-root = tk.Tk()
-root.state('zoomed')
 Amount = ""
 AmountCheck = "0"
 texts = ("Arial", 19, "bold")
@@ -13,12 +9,12 @@ def Last_Screen():
     pass
 
 
-def button_click(value):
+def buttonDeposit(value):
     global AmountCheck
     global Amount
 
     if value == "Cancel":
-        Last_Screen()
+        Last_Screen
     elif value == "Clear":
         AmountCheck = AmountCheck[:-1] if len(AmountCheck) > 1 else "0"
         decimal = float(AmountCheck)
@@ -31,6 +27,7 @@ def button_click(value):
         lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10,"bold"), bg = "#FFFFFE")
         lblNumField.place(x=558, y=150)
         Amount = int(AmountCheck)
+        
         root.after(2000,Receipt)
     else:
         last_amount = AmountCheck + value
@@ -53,7 +50,8 @@ def button_click(value):
             lblNumField.place(x=558, y=150)
 
 
-def Keypad():
+def KeypadDeposit(pin):
+    pin2 = pin
     frame2.place(x = 520, y = 140)
     global PinNumber
     root.title("Keypad")
@@ -89,8 +87,8 @@ def Keypad():
     btn9 = tk.Button(frame, text="9", width=8, height=2, command=lambda: button_click("9"), background = "#D7D9D6")
     btnEnter = tk.Button(frame, text="Enter", width=8, height=2, command=lambda: button_click("Enter"), background = "green")
 
-    btnEmpty1 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btn0 = tk.Button(frame, text="0", width=8, height=2, command=lambda: button_click("0"), background = "#D7D9D6")
+    btnEmpty1 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty2 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty3 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "white")
 
@@ -114,13 +112,15 @@ def Keypad():
     btn0.grid(row=3, column=1, padx=2, pady=2)
     btnEmpty2.grid(row=3, column=2, padx=2, pady=2)
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
+    root.mainloop()
 
 def Receipt():
+    
     global MenuFrame
     global frame
     global frame2
     for widget in root.winfo_children():
-        widget.destroy()
+        widget.place_forget()
     MenuFrame = tk.Frame(root, bd = 0, relief="solid", width= 1200, height= 300,pady=20)
     frame3 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
     frame4 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
@@ -157,7 +157,5 @@ def Receipt():
     btn3.place(x = 550, y = 48)
     btn4.place(x = 550, y = 48)
 
-Keypad()
 
-root.mainloop()
 

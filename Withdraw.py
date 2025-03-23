@@ -1,13 +1,8 @@
-import tkinter as tk
-root = tk.Tk()
-root.state('zoomed')
 Amount = ""
 AmountCheck = "0"
 frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
 MenuFrame = tk.Frame(root, bd=1, relief="solid", pady=20, width= 1200, height= 300, bg = "#FFFFFE")
 frame2 = tk.Frame(root,bd = 2, relief="solid", width = 250, height = 40, bg = "#FFFFFE")
-def Last_Screen():
-    pass
 
 
 def button_click(value):
