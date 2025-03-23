@@ -140,7 +140,6 @@ def EnterPIN():
     btnEmpty2.grid(row=3, column=2, padx=2, pady=2)
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
 
-
 def mainMenu(pin):
     for widget in root.winfo_children():
         widget.destroy()
@@ -157,12 +156,12 @@ def mainMenu(pin):
     lblOption1 = tk.Label(frame, text="Withdraw", width=8, height=1, font=texts, bg="#FFFFFE")
     lblOption2 = tk.Label(frame2, text="Deposit", width=8, height=1, font=texts, bg="#FFFFFE")
     lblOption3 = tk.Label(frame3, text="Check Balance", width=15, height=1, font=texts, bg="#FFFFFE")
-    lblOption4 = tk.Label(frame4, text="", width=8, height=1, font=texts, bg="#FFFFFE")
+    lblOption4 = tk.Label(frame4, text="EXIT PROGRAM", width=15, height=1, font=texts, bg="#FFFFFE")
 
     btn1 = tk.Button(frame, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadWithdraw(pin1)))
     btn2 = tk.Button(frame2, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadDeposit(pin1)))
     btn3 = tk.Button(frame3, width=1, height=0, font=("arial"),  command =  lambda: root.after(2000, lambda: CheckBalance(pin1)))
-    btn4 = tk.Button(frame4, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadWithdraw(pin1)))
+    btn4 = tk.Button(frame4, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: root.destroy()))
 
     lblBank = tk.Label(root, text="Bank", width=4, height=1, font=texts, bg="#FFFFFE")
 
@@ -225,7 +224,7 @@ def buttonDeposit(value):
                 instances.AddTbalance(Amount)
                 instances.AddAbalance(Amount)
 
-        root.after(2000,lambda:ReceiptDeposit(PinNumber,str(Amount)))
+        root.after(2000,lambda:ReceiptDeposit(PinNumber,Amount))
     else:
         last_amount = AmountCheck1 + value
         if float(last_amount) > 20000:
@@ -328,13 +327,13 @@ def ReceiptDeposit(pin,amount):
     frame2 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604, height = 140,bg = "#FFFFFE")
 
     lblOption1 = tk.Label(frame, text = "Yes", width = 8, height = 1, font = texts , bg = "#FFFFFE" )
-    lblOption3 = tk.Label(frame3, text = "No", width = 15, height = 1, font = texts , bg = "#FFFFFE" )
+    lblOption3 = tk.Label(frame3, text = "MENU", width = 15, height = 1, font = texts , bg = "#FFFFFE")
     lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"))
     lblHeader = tk.Label(root, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11))
 
-    btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"), command= lambda: root.after(2000,Receipt.main("DEPOSIT",pin,str(amount),CardNum)))
+    btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"), command= lambda: root.after(2000,lambda:Receipt.main("DEPOSIT",pin,str(amount),CardNum)))
     btn2 = tk.Button(frame2, width = 1, height = 0, font = ("arial"))
-    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"))
+    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"), command = lambda:  root.after(2000,lambda:mainMenu(pin)))
     btn4 = tk.Button(frame4, width = 1, height = 0, font = ("arial"))
 
 
@@ -388,7 +387,7 @@ def buttonWithdraw(value):
         for instances in Account.instance:
             if PinNumber == instances.PINnum:
                 Amount2 = instances.total_balance - Amount
-                Amount3 = instances.amount_balance - Amount
+                Amount3 = instances.available_balance - Amount
         data = (Amount2, Amount3, PinNumber)
         cursor.execute(update_query, data)
         db.commit()
@@ -526,7 +525,6 @@ def ReceiptWithdraw(pin,amount):
     btn3.place(x = 550, y = 48)
     btn4.place(x = 550, y = 48)
 
-
 def CheckBalance(pin):
     texts = ("Arial", 13, "bold")
     texts2 = ("Arial", 15, "bold")
@@ -569,9 +567,7 @@ def CheckBalance(pin):
                 frame2.grid(row=1, column=0)
                 frame3.grid(row=1, column=1)
 
-
 data()
 EnterPIN()
-
 
 root.mainloop()
