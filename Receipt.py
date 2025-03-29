@@ -7,8 +7,8 @@ texts2 = ("Arial", 8, "bold")
 
 
 def ApplicationId():
-    timestamp = datetime.datetime.now().strftime("%y%m%d-%H%M%S")  # YYMMDD-HHMMSS
-    random_part = random.randint(10000, 99999)  # 5-digit random number
+    timestamp = datetime.datetime.now().strftime("%y%m%d-%H%M%S")
+    random_part = random.randint(10000, 99999)
     return f"APP-{timestamp}-{random_part}"
 
 
@@ -49,10 +49,10 @@ def main(transaction,Pin_number,Amount,Card_number):
                     # lblFromtxt = tk.Label(root, text = asterisk, width = 4, height = 1, font = texts , bg = "white")
 
                     lblTotalBalancetxt =tk.Label(root, text = "TOTAL BALANCE", width = 12, height = 1, font = texts2 , bg = "white")
-                    lblTotalBalance =tk.Label(root, text = "PHP " + TBalance, width = 9, height = 1, font = texts2 , bg = "white")
+                    lblTotalBalance =tk.Label(root, text = "PHP " + TBalance, width = 10, height = 1, font = texts2 , bg = "white")
 
                     lblAvailableBalancetxt =tk.Label(root, text = "AVAILABLE BALANCE", width = 16, height = 1, font = texts2 , bg = "white")
-                    lblAvailableBalance =tk.Label(root, text = "PHP " + ABalance, width = 9, height = 1, font = texts2 , bg = "white")
+                    lblAvailableBalance =tk.Label(root, text = "PHP " + ABalance, width = 10, height = 1, font = texts2 , bg = "white")
 
                     lblApplicationLabeltxt = tk.Label(root, text = "APPLICATION LABEL:", width = 16, height = 1, font = texts2 , bg = "white")
                     lblApplicationLabel = tk.Label(root, text = "MASTERCARD", width = 11, height = 1, font = texts2 , bg = "white")

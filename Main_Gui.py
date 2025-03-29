@@ -3,8 +3,8 @@ from Account_Class import *
 import mysql.connector
 import Receipt
 import Check_Balance
-root = tk.Tk()
-root.state("zoomed")
+
+
 texts2 = ("Arial", 8, "bold")
 
 
@@ -207,10 +207,10 @@ def buttonDeposit(value):
         host="localhost",
         user="root",
         password="",
-        database="credit_card"
+        database="credit_info"
     )
         cursor = db.cursor()
-        update_query = "UPDATE CARD SET Total_Balance = %s, Available_Balance = %s WHERE PIN = %s"
+        update_query = "UPDATE CARDINFO SET Total_Balance = %s, Available_Balance = %s WHERE PIN = %s"
         for instances in Account.instance:
             if PinNumber == instances.PINnum:
                 Amount2 = instances.total_balance + Amount
@@ -380,10 +380,10 @@ def buttonWithdraw(value):
         host="localhost",
         user="root",
         password="",
-        database="credit_card"
+        database="credit_info"
     )
         cursor = db.cursor()
-        update_query = "UPDATE CARD SET Total_Balance = %s, Available_Balance = %s WHERE PIN = %s"
+        update_query = "UPDATE CARDINFO SET Total_Balance = %s, Available_Balance = %s WHERE PIN = %s"
         for instances in Account.instance:
             if PinNumber == instances.PINnum:
                 Amount2 = instances.total_balance - Amount
@@ -544,8 +544,8 @@ def CheckBalance(pin):
                 lblTbalancetxt = tk.Label(MenuFrame, text="TOTAL BALANCE", width=13, height=1, font=texts, bg="#FFFFFE")
                 lblAbalance = tk.Label(MenuFrame, text="PHP " + str(float(instances.available_balance)), width=12, height=1, font=texts, bg="#FFFFFE")
                 lblAbalancetxt = tk.Label(MenuFrame, text="AVAILABLE BALANCE", width=18, height=1, font=texts, bg="#FFFFFE")
-                lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12,"bold"), bg = "#FFFFFE")
-                lblHeader = tk.Label(MenuFrame, text = "Balance Inquiry", width = 12, height = 1, font = ("Arial", 11,"bold"), bg = "#FFFFFE")
+                lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = texts, bg = "#FFFFFE")
+                lblHeader = tk.Label(MenuFrame, text = "Balance Inquiry", width = 12, height = 1, font = texts, bg = "#FFFFFE")
 
                 btn1 = tk.Button(frame2, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: mainMenu(pin)))
                 btn2 = tk.Button(frame3, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: Check_Balance.main(pin)))
@@ -567,7 +567,14 @@ def CheckBalance(pin):
                 frame2.grid(row=1, column=0)
                 frame3.grid(row=1, column=1)
 
-data()
-EnterPIN()
+def main():
+    data()
+    EnterPIN()
+    
 
-root.mainloop()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.state("zoomed")
+    main(root)
+    root.mainloop()

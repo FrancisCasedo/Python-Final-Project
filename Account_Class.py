@@ -37,13 +37,13 @@ def data():
         host="localhost",
         user="root",
         password="",
-        database="credit_card"
+        database="credit_info"
     )
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM CARD")
+    cursor.execute("SELECT * FROM CARDINFO")
 
     for row in cursor.fetchall():
-        Account(row[0], row[1], row[2], row[3])
+        Account(row[1], row[2], row[3], row[4])
 
     db.close()
 
