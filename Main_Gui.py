@@ -18,7 +18,7 @@ Amount = ""
 AmountCheck = "0"
 texts = ("Arial", 19, "bold")
 
-def button_PIN(value):
+def button_PIN(value,root):
     global tries
     global PinNumber
     global PinCheck
@@ -38,7 +38,7 @@ def button_PIN(value):
 
         else:
             if value == "Cancel":
-                exit()
+                root.after(2000,lambda:root.destroy())
             elif value == "Clear":
 
                 PinCheck = PinCheck[:-1]
@@ -56,7 +56,7 @@ def button_PIN(value):
                             if PinNumber == instances.PINnum:
                                 lblNumField = tk.Label(root, text = "Correct PIN", width = 25, height = 1, font=("Arial", 10, "bold"), bg = "#FFFFFE", fg = "dark green")
                                 lblNumField.place(x=544, y=150)
-                                root.after(2000, lambda: mainMenu(PinNumber))
+                                root.after(2000, lambda: mainMenu(PinNumber,root))
                                 break
                             else:
                                 lblExceed = tk.Label(root, text="Invalid PIN, try again...", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
@@ -73,7 +73,7 @@ def button_PIN(value):
         lblExceed = tk.Label(root, text="Insufficient tries left", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
         lblExceed.place(x=545, y=150)
 
-def EnterPIN():
+def EnterPIN(root):
     MenuFrame = tk.Frame(root, bd=1, relief="solid", pady=20, width= 1200, height= 300, bg = "#FFFFFE")
     framePIN = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
     framePIN2 = tk.Frame(root,bd = 2, relief="solid", width = 250, height = 40, bg = "#FFFFFE")
@@ -85,12 +85,12 @@ def EnterPIN():
     # M E N U - - - - - - - - - -- - - - -
     MenuFrame.place(x = 40, y = 2)
 
-    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12,"bold"), bg = "#FFFFFE")
-    lblHeader = tk.Label(MenuFrame, text = "Enter PIN", width = 8, height = 1, font = ("Arial", 11,"bold"), bg = "#FFFFFE")
+    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 14,"bold"), bg = "#FFFFFE")
+    lblHeader = tk.Label(MenuFrame, text = "Enter PIN", width = 8, height = 1, font = ("Arial", 14,"bold"), bg = "#FFFFFE")
 
     # L A B E L   - - - - - - - - - - - - -
-    lblBank.place(x=528, y=-0)
-    lblHeader.place(x=568, y=80)
+    lblBank.place(x=511, y=-0)
+    lblHeader.place(x=558, y=80)
 
     # K E Y P A D - - - - - - - - -- -- -
     # L A Y O U T - - - - -- - -- - -  - --- - - - - - - -
@@ -99,23 +99,23 @@ def EnterPIN():
 
 
     # B U T T O N S  - - - - - - - - - - - - -
-    btn1 = tk.Button(framePIN, text="1", width=8, height=2, command=lambda: button_PIN("1"), background = "#D7D9D6")
-    btn2 = tk.Button(framePIN, text="2", width=8, height=2, command=lambda: button_PIN("2"), background = "#D7D9D6")
-    btn3 = tk.Button(framePIN, text="3", width=8, height=2, command=lambda: button_PIN("3"), background = "#D7D9D6")
-    btnCancel = tk.Button(framePIN, text="<< Cancel", width=8, height=2, command=lambda: button_PIN("Cancel"), background = "red")
+    btn1 = tk.Button(framePIN, text="1", width=8, height=2, command=lambda: button_PIN("1",root), background = "#D7D9D6")
+    btn2 = tk.Button(framePIN, text="2", width=8, height=2, command=lambda: button_PIN("2",root), background = "#D7D9D6")
+    btn3 = tk.Button(framePIN, text="3", width=8, height=2, command=lambda: button_PIN("3",root), background = "#D7D9D6")
+    btnCancel = tk.Button(framePIN, text="<< Cancel", width=8, height=2, command=lambda: button_PIN("Cancel",root), background = "red")
 
-    btn4 = tk.Button(framePIN, text="4", width=8, height=2, command=lambda: button_PIN("4"), background = "#D7D9D6")
-    btn5 = tk.Button(framePIN, text="5", width=8, height=2, command=lambda: button_PIN("5"), background = "#D7D9D6")
-    btn6 = tk.Button(framePIN, text="6", width=8, height=2, command=lambda: button_PIN("6"), background = "#D7D9D6")
-    btnClear = tk.Button(framePIN, text="< Clear", width=8, height=2, command=lambda: button_PIN("Clear"), background = "yellow")
+    btn4 = tk.Button(framePIN, text="4", width=8, height=2, command=lambda: button_PIN("4",root), background = "#D7D9D6")
+    btn5 = tk.Button(framePIN, text="5", width=8, height=2, command=lambda: button_PIN("5",root), background = "#D7D9D6")
+    btn6 = tk.Button(framePIN, text="6", width=8, height=2, command=lambda: button_PIN("6",root), background = "#D7D9D6")
+    btnClear = tk.Button(framePIN, text="< Clear", width=8, height=2, command=lambda: button_PIN("Clear",root), background = "yellow")
 
-    btn7 = tk.Button(framePIN, text="7", width=8, height=2, command=lambda: button_PIN("7"), background = "#D7D9D6")
-    btn8 = tk.Button(framePIN, text="8", width=8, height=2, command=lambda: button_PIN("8"), background = "#D7D9D6")
-    btn9 = tk.Button(framePIN, text="9", width=8, height=2, command=lambda: button_PIN("9"), background = "#D7D9D6")
-    btnEnter = tk.Button(framePIN, text="Enter", width=8, height=2, command=lambda: button_PIN("Enter"), background = "green")
+    btn7 = tk.Button(framePIN, text="7", width=8, height=2, command=lambda: button_PIN("7",root), background = "#D7D9D6")
+    btn8 = tk.Button(framePIN, text="8", width=8, height=2, command=lambda: button_PIN("8",root), background = "#D7D9D6")
+    btn9 = tk.Button(framePIN, text="9", width=8, height=2, command=lambda: button_PIN("9",root), background = "#D7D9D6")
+    btnEnter = tk.Button(framePIN, text="Enter", width=8, height=2, command=lambda: button_PIN("Enter",root), background = "green")
 
     btnEmpty1 = tk.Button(framePIN, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
-    btn0 = tk.Button(framePIN, text="0", width=8, height=2, command=lambda: button_PIN("0"), background = "#D7D9D6")
+    btn0 = tk.Button(framePIN, text="0", width=8, height=2, command=lambda: button_PIN("0",root), background = "#D7D9D6")
     btnEmpty2 = tk.Button(framePIN, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty3 = tk.Button(framePIN, text="", width=8, height=2, state="disabled", background = "white")
 
@@ -140,14 +140,14 @@ def EnterPIN():
     btnEmpty2.grid(row=3, column=2, padx=2, pady=2)
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
 
-def mainMenu(pin):
+def mainMenu(pin,root):
     for widget in root.winfo_children():
         widget.destroy()
     pin1 = pin
     texts = ("Arial", 19, "bold")
     root.state('zoomed')
 
-    MenuFrame = tk.Frame(root, bd=0, relief="solid", width=1200, height=300, pady=20)
+    MenuFrame = tk.Frame(root, bd=0, relief="solid", width=1200, height=300, pady=20, bg = "#FFFFFE")
     frame = tk.Frame(MenuFrame, bd=1, relief="solid", width=604, height=140, bg="#FFFFFE")
     frame2 = tk.Frame(MenuFrame, bd=1, relief="solid", width=604, height=140, bg="#FFFFFE")
     frame3 = tk.Frame(MenuFrame, bd=1, relief="solid", width=604, height=140, bg="#FFFFFE")
@@ -158,9 +158,9 @@ def mainMenu(pin):
     lblOption3 = tk.Label(frame3, text="Check Balance", width=15, height=1, font=texts, bg="#FFFFFE")
     lblOption4 = tk.Label(frame4, text="EXIT PROGRAM", width=15, height=1, font=texts, bg="#FFFFFE")
 
-    btn1 = tk.Button(frame, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadWithdraw(pin1)))
-    btn2 = tk.Button(frame2, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadDeposit(pin1)))
-    btn3 = tk.Button(frame3, width=1, height=0, font=("arial"),  command =  lambda: root.after(2000, lambda: CheckBalance(pin1)))
+    btn1 = tk.Button(frame, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadWithdraw(pin1,root)))
+    btn2 = tk.Button(frame2, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: KeypadDeposit(pin1,root)))
+    btn3 = tk.Button(frame3, width=1, height=0, font=("arial"),  command =  lambda: root.after(2000, lambda: CheckBalance(pin1,root)))
     btn4 = tk.Button(frame4, width=1, height=0, font=("arial"), command =  lambda: root.after(2000, lambda: root.destroy()))
 
     lblBank = tk.Label(root, text="National Metro Bank", width=16, height=1, font=texts, bg="#FFFFFE")
@@ -180,21 +180,21 @@ def mainMenu(pin):
     frame3.grid(row=0, column=1)
     frame4.grid(row=1, column=1)
 
-    lblBank.place(x=520, y=5)
+    lblBank.place(x=511, y=-5)
     MenuFrame.place(x=40, y=40)
 
 
-def buttonDeposit(value):
+def buttonDeposit(value,root):
     global AmountCheck1
     Amount = 0
 
     if value == "Cancel":
-        root.destroy()
+        root.after(2000,lambda:mainMenu(PinNumber,root))
     elif value == "Clear":
         AmountCheck1 = AmountCheck1[:-1] if len(AmountCheck1) > 1 else "0"
         decimal = float(AmountCheck1)
         formatted = f"{decimal:.2f}"
-        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10), bg = "#FFFFFE")
+        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10, "bold"), bg = "#FFFFFE")
         lblNumField.place(x=558, y=150)
     elif value == "Enter":
         decimal = float(AmountCheck1)
@@ -224,7 +224,7 @@ def buttonDeposit(value):
                 instances.AddTbalance(Amount)
                 instances.AddAbalance(Amount)
 
-        root.after(2000,lambda:ReceiptDeposit(PinNumber,Amount))
+        root.after(2000,lambda:ReceiptDeposit(PinNumber,Amount,root))
     else:
         last_amount = AmountCheck1 + value
         if float(last_amount) > 20000:
@@ -245,7 +245,7 @@ def buttonDeposit(value):
             lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10, "bold"), bg = "#FFFFFE")
             lblNumField.place(x=558, y=150)
 
-def KeypadDeposit(pin):
+def KeypadDeposit(pin,root):
     for widget in root.winfo_children():
         widget.destroy()
     frame = tk.Frame(root, bd=2, relief="solid", padx=20, pady=20, bg = "#FFFFFE")
@@ -258,12 +258,12 @@ def KeypadDeposit(pin):
 
     # M E N U - - - - - - - - - -- - - - -
     MenuFrame.place(x = 40, y = 2)
-    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12), bg = "#FFFFFE")
-    lblHeader = tk.Label(MenuFrame, text = "DEPOSIT", width = 8, height = 1, font = ("Arial", 11, "bold"), bg = "#FFFFFE")
+    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 14,"bold"), bg = "#FFFFFE")
+    lblHeader = tk.Label(MenuFrame, text = "DEPOSIT", width = 8, height = 1, font = ("Arial", 14, "bold"), bg = "#FFFFFE")
 
     # L A B E L   - - - - - - - - - - - - -
-    lblBank.place(x=528, y=0)
-    lblHeader.place(x=564, y=40)
+    lblBank.place(x=511, y=-0)
+    lblHeader.place(x=554, y=80)
 
     # L A Y O U T - - - - -- - -- - -  - --- - - - - - - -
     frame.grid(row=0, column=0, padx=12, pady=12)
@@ -272,22 +272,22 @@ def KeypadDeposit(pin):
 
     # K E Y P A D - - - - - - - - -- -- -
     # B U T T O N S  - - - - - - - - - - - - -
-    btn1 = tk.Button(frame, text="1", width=8, height=2, command=lambda: buttonDeposit("1"), background = "#D7D9D6")
-    btn2 = tk.Button(frame, text="2", width=8, height=2, command=lambda: buttonDeposit("2"), background = "#D7D9D6")
-    btn3 = tk.Button(frame, text="3", width=8, height=2, command=lambda: buttonDeposit("3"), background = "#D7D9D6")
-    btnCancel = tk.Button(frame, text="<< Cancel", width=8, height=2, command=lambda: buttonDeposit("Cancel"), background = "red")
+    btn1 = tk.Button(frame, text="1", width=8, height=2, command=lambda: buttonDeposit("1",root), background = "#D7D9D6")
+    btn2 = tk.Button(frame, text="2", width=8, height=2, command=lambda: buttonDeposit("2",root), background = "#D7D9D6")
+    btn3 = tk.Button(frame, text="3", width=8, height=2, command=lambda: buttonDeposit("3",root), background = "#D7D9D6")
+    btnCancel = tk.Button(frame, text="<< Cancel", width=8, height=2, command=lambda: buttonDeposit("Cancel",root), background = "red")
 
-    btn4 = tk.Button(frame, text="4", width=8, height=2, command=lambda: buttonDeposit("4"), background = "#D7D9D6")
-    btn5 = tk.Button(frame, text="5", width=8, height=2, command=lambda: buttonDeposit("5"), background = "#D7D9D6")
-    btn6 = tk.Button(frame, text="6", width=8, height=2, command=lambda: buttonDeposit("6"), background = "#D7D9D6")
-    btnClear = tk.Button(frame, text="< Clear", width=8, height=2, command=lambda: buttonDeposit("Clear"), background = "yellow")
+    btn4 = tk.Button(frame, text="4", width=8, height=2, command=lambda: buttonDeposit("4",root), background = "#D7D9D6")
+    btn5 = tk.Button(frame, text="5", width=8, height=2, command=lambda: buttonDeposit("5",root), background = "#D7D9D6")
+    btn6 = tk.Button(frame, text="6", width=8, height=2, command=lambda: buttonDeposit("6",root), background = "#D7D9D6")
+    btnClear = tk.Button(frame, text="< Clear", width=8, height=2, command=lambda: buttonDeposit("Clear",root), background = "yellow")
 
-    btn7 = tk.Button(frame, text="7", width=8, height=2, command=lambda: buttonDeposit("7"), background = "#D7D9D6")
-    btn8 = tk.Button(frame, text="8", width=8, height=2, command=lambda: buttonDeposit("8"), background = "#D7D9D6")
-    btn9 = tk.Button(frame, text="9", width=8, height=2, command=lambda: buttonDeposit("9"), background = "#D7D9D6")
-    btnEnter = tk.Button(frame, text="Enter", width=8, height=2, command=lambda: buttonDeposit("Enter"), background = "green")
+    btn7 = tk.Button(frame, text="7", width=8, height=2, command=lambda: buttonDeposit("7",root), background = "#D7D9D6")
+    btn8 = tk.Button(frame, text="8", width=8, height=2, command=lambda: buttonDeposit("8",root), background = "#D7D9D6")
+    btn9 = tk.Button(frame, text="9", width=8, height=2, command=lambda: buttonDeposit("9",root), background = "#D7D9D6")
+    btnEnter = tk.Button(frame, text="Enter", width=8, height=2, command=lambda: buttonDeposit("Enter",root), background = "green")
 
-    btn0 = tk.Button(frame, text="0", width=8, height=2, command=lambda: buttonDeposit("0"), background = "#D7D9D6")
+    btn0 = tk.Button(frame, text="0", width=8, height=2, command=lambda: buttonDeposit("0",root), background = "#D7D9D6")
     btnEmpty1 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty2 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty3 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "white")
@@ -314,13 +314,13 @@ def KeypadDeposit(pin):
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
     root.mainloop()
 
-def ReceiptDeposit(pin,amount):
+def ReceiptDeposit(pin,amount,root):
     for widget in root.winfo_children():
         widget.destroy()
     for instances in Account.instance:
             if pin == instances.PINnum:
                 CardNum = instances.Card_number
-    MenuFrame = tk.Frame(root, bd = 0, relief="solid", width= 1200, height= 300,pady=20)
+    MenuFrame = tk.Frame(root, bd = 0, relief="solid", width= 1200, height= 300,pady=20,bg="#FFFFFE")
     frame3 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
     frame4 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
     frame = tk.Frame(MenuFrame, bd=1, relief="solid",width = 604, height = 140,bg = "#FFFFFE")
@@ -328,12 +328,12 @@ def ReceiptDeposit(pin,amount):
 
     lblOption1 = tk.Label(frame, text = "Yes", width = 8, height = 1, font = texts , bg = "#FFFFFE" )
     lblOption3 = tk.Label(frame3, text = "MENU", width = 15, height = 1, font = texts , bg = "#FFFFFE")
-    lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"))
-    lblHeader = tk.Label(root, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11))
+    lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"),bg="#FFFFFE")
+    lblHeader = tk.Label(root, text = "DEPOSIT", width = 8, height = 1, font = ("Arial", 12,"bold"))
 
     btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"), command= lambda: root.after(2000,lambda:Receipt.main("DEPOSIT",pin,str(amount),CardNum)))
     btn2 = tk.Button(frame2, width = 1, height = 0, font = ("arial"))
-    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"), command = lambda:  root.after(2000,lambda:mainMenu(pin)))
+    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"), command = lambda:  root.after(2000,lambda:mainMenu(pin,root)))
     btn4 = tk.Button(frame4, width = 1, height = 0, font = ("arial"))
 
 
@@ -357,23 +357,23 @@ def ReceiptDeposit(pin,amount):
     btn4.place(x = 550, y = 48)
 
 
-def buttonWithdraw(value):
+def buttonWithdraw(value,root):
     global AmountCheck
     Amount = 0
 
 
     if value == "Cancel":
-        root.destroy()
+         root.after(2000,lambda:mainMenu(PinNumber,root))
     elif value == "Clear":
         AmountCheck = AmountCheck[:-1] if len(AmountCheck) > 1 else "0"
         decimal = float(AmountCheck)
         formatted = f"{decimal:.2f}"
-        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10), bg = "#FFFFFE")
+        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10,"bold"), bg = "#FFFFFE")
         lblNumField.place(x=558, y=150)
     elif value == "Enter":
         decimal = float(AmountCheck)
         formatted = f"{decimal:.2f}"
-        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10), bg = "#FFFFFE")
+        lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10,"bold"), bg = "#FFFFFE")
         lblNumField.place(x=558, y=150)
         Amount = int(AmountCheck)
         db = mysql.connector.connect(
@@ -396,13 +396,13 @@ def buttonWithdraw(value):
             if PinNumber == instances.PINnum:
                 instances.SpendTbalance(Amount)
                 instances.SpendAbalance(Amount)
-        root.after(2000, lambda: ReceiptWithdraw(PinNumber,Amount))
+        root.after(2000, lambda: ReceiptWithdraw(PinNumber,Amount,root))
 
     else:
         last_amount = AmountCheck + value
         if float(last_amount) > 20000:
             lblExceed = tk.Label(root, text="Exceeded possible amount....", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
-            lblsign = tk.Label(root, text = " ", width = 1, height = 1, font = ("Arial", 10), bg = "#FFFFFE")
+            lblsign = tk.Label(root, text = " ", width = 1, height = 1, font = ("Arial", 10, "bold"), bg = "#FFFFFE")
             lblsign.place(x = 545, y=150)
             lblExceed.place(x = 556, y=150)
             AmountCheck = "0"
@@ -418,7 +418,7 @@ def buttonWithdraw(value):
             lblNumField = tk.Label(root, text=formatted, width=25, height=1, font=("Arial", 10, "bold"), bg = "#FFFFFE")
             lblNumField.place(x=558, y=150)
 
-def KeypadWithdraw(pin):
+def KeypadWithdraw(pin,root):
     for widget in root.winfo_children():
         widget.destroy()
     global PinNumber
@@ -429,12 +429,12 @@ def KeypadWithdraw(pin):
     root.title("Keypad")
     # M E N U - - - - - - - - - -- - - - -
     MenuFrame.place(x = 40, y = 2)
-    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 12), bg = "#FFFFFE")
-    lblHeader = tk.Label(MenuFrame, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11), bg = "#FFFFFE")
+    lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = ("Arial", 14, "bold"), bg = "#FFFFFE")
+    lblHeader = tk.Label(MenuFrame, text = "Withdrawal", width = 9, height = 1, font = ("Arial", 14, "bold"), bg = "#FFFFFE")
 
     # L A B E L   - - - - - - - - - - - - -
-    lblBank.place(x=528, y=0)
-    lblHeader.place(x=564, y=40)
+    lblBank.place(x=511, y=-0)
+    lblHeader.place(x=550, y=80)
 
     # L A Y O U T - - - - -- - -- - -  - --- - - - - - - -
     frame.grid(row=0, column=0, padx=12, pady=12)
@@ -443,23 +443,23 @@ def KeypadWithdraw(pin):
 
     # K E Y P A D - - - - - - - - -- -- -
     # B U T T O N S  - - - - - - - - - - - - -
-    btn1 = tk.Button(frame, text="1", width=8, height=2, command=lambda: buttonWithdraw("1"), background = "#D7D9D6")
-    btn2 = tk.Button(frame, text="2", width=8, height=2, command=lambda: buttonWithdraw("2"), background = "#D7D9D6")
-    btn3 = tk.Button(frame, text="3", width=8, height=2, command=lambda: buttonWithdraw("3"), background = "#D7D9D6")
-    btnCancel = tk.Button(frame, text="<< Cancel", width=8, height=2, command=lambda: buttonWithdraw("Cancel"), background = "red")
+    btn1 = tk.Button(frame, text="1", width=8, height=2, command=lambda: buttonWithdraw("1",root), background = "#D7D9D6")
+    btn2 = tk.Button(frame, text="2", width=8, height=2, command=lambda: buttonWithdraw("2",root), background = "#D7D9D6")
+    btn3 = tk.Button(frame, text="3", width=8, height=2, command=lambda: buttonWithdraw("3",root), background = "#D7D9D6")
+    btnCancel = tk.Button(frame, text="<< Cancel", width=8, height=2, command=lambda: buttonWithdraw("Cancel",root), background = "red")
 
-    btn4 = tk.Button(frame, text="4", width=8, height=2, command=lambda: buttonWithdraw("4"), background = "#D7D9D6")
-    btn5 = tk.Button(frame, text="5", width=8, height=2, command=lambda: buttonWithdraw("5"), background = "#D7D9D6")
-    btn6 = tk.Button(frame, text="6", width=8, height=2, command=lambda: buttonWithdraw("6"), background = "#D7D9D6")
-    btnClear = tk.Button(frame, text="< Clear", width=8, height=2, command=lambda: buttonWithdraw("Clear"), background = "yellow")
+    btn4 = tk.Button(frame, text="4", width=8, height=2, command=lambda: buttonWithdraw("4",root), background = "#D7D9D6")
+    btn5 = tk.Button(frame, text="5", width=8, height=2, command=lambda: buttonWithdraw("5",root), background = "#D7D9D6")
+    btn6 = tk.Button(frame, text="6", width=8, height=2, command=lambda: buttonWithdraw("6",root), background = "#D7D9D6")
+    btnClear = tk.Button(frame, text="< Clear", width=8, height=2, command=lambda: buttonWithdraw("Clear",root), background = "yellow")
 
-    btn7 = tk.Button(frame, text="7", width=8, height=2, command=lambda: buttonWithdraw("7"), background = "#D7D9D6")
-    btn8 = tk.Button(frame, text="8", width=8, height=2, command=lambda: buttonWithdraw("8"), background = "#D7D9D6")
-    btn9 = tk.Button(frame, text="9", width=8, height=2, command=lambda: buttonWithdraw("9"), background = "#D7D9D6")
-    btnEnter = tk.Button(frame, text="Enter", width=8, height=2, command=lambda: buttonWithdraw("Enter"), background = "green")
+    btn7 = tk.Button(frame, text="7", width=8, height=2, command=lambda: buttonWithdraw("7",root), background = "#D7D9D6")
+    btn8 = tk.Button(frame, text="8", width=8, height=2, command=lambda: buttonWithdraw("8",root), background = "#D7D9D6")
+    btn9 = tk.Button(frame, text="9", width=8, height=2, command=lambda: buttonWithdraw("9",root), background = "#D7D9D6")
+    btnEnter = tk.Button(frame, text="Enter", width=8, height=2, command=lambda: buttonWithdraw("Enter",root), background = "green")
 
     btnEmpty1 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
-    btn0 = tk.Button(frame, text="0", width=8, height=2, command=lambda: buttonWithdraw("0"), background = "#D7D9D6")
+    btn0 = tk.Button(frame, text="0", width=8, height=2, command=lambda: buttonWithdraw("0",root), background = "#D7D9D6")
     btnEmpty2 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "#D7D9D6")
     btnEmpty3 = tk.Button(frame, text="", width=8, height=2, state="disabled", background = "white")
 
@@ -484,13 +484,13 @@ def KeypadWithdraw(pin):
     btnEmpty2.grid(row=3, column=2, padx=2, pady=2)
     btnEmpty3.grid(row=3, column=3, padx=2, pady=2)
 
-def ReceiptWithdraw(pin,amount):
+def ReceiptWithdraw(pin,amount,root):
     for widget in root.winfo_children():
         widget.destroy()
     for instances in Account.instance:
             if pin == instances.PINnum:
                 CardNum = instances.Card_number
-    MenuFrame = tk.Frame(root, bd = 0, relief="solid", width= 1200, height= 300,pady=20)
+    MenuFrame = tk.Frame(root, bd = 0, relief="solid", width= 1200, height= 300,pady=20,bg="#FFFFFE" )
     frame3 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
     frame4 = tk.Frame(MenuFrame, bd=1, relief="solid", width = 604,height = 140,bg = "#FFFFFE")
     frame = tk.Frame(MenuFrame, bd=1, relief="solid",width = 604, height = 140,bg = "#FFFFFE")
@@ -498,11 +498,11 @@ def ReceiptWithdraw(pin,amount):
 
     lblOption1 = tk.Label(frame, text = "YES", width = 8, height = 1, font = texts , bg = "#FFFFFE" )
     lblOption3 = tk.Label(frame3, text = "MENU", width = 15, height = 1, font = texts , bg = "#FFFFFE" )
-    lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"))
+    lblBank = tk.Label(root, text = "Would u like to print a receipt for this transaction?", width = 100, height = 1, font = ("Arial", 19, "bold"), bg = "#FFFFFE")
     lblHeader = tk.Label(root, text = "Withdrawal", width = 8, height = 1, font = ("Arial", 11))
     btn1 = tk.Button(frame, width = 1, height = 0, font = ("arial"), command= lambda: root.after(2000,lambda:Receipt.main("WITHDRAW",pin,str(amount),CardNum)))
     btn2 = tk.Button(frame2, width = 1, height = 0, font = ("arial"))
-    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"), command = lambda:  root.after(2000,lambda:mainMenu(pin)))
+    btn3 = tk.Button(frame3, width = 1, height = 0, font = ("arial"), command = lambda:  root.after(2000,lambda:mainMenu(pin,root)))
     btn4 = tk.Button(frame4, width = 1, height = 0, font = ("arial"))
 
 
@@ -525,7 +525,7 @@ def ReceiptWithdraw(pin,amount):
     btn3.place(x = 550, y = 48)
     btn4.place(x = 550, y = 48)
 
-def CheckBalance(pin):
+def CheckBalance(pin,root):
     texts = ("Arial", 13, "bold")
     texts2 = ("Arial", 15, "bold")
     for widget in root.winfo_children():
@@ -547,7 +547,7 @@ def CheckBalance(pin):
                 lblBank = tk.Label(MenuFrame, text = "National Metro Bank", width = 16, height = 1, font = texts, bg = "#FFFFFE")
                 lblHeader = tk.Label(MenuFrame, text = "Balance Inquiry", width = 12, height = 1, font = texts, bg = "#FFFFFE")
 
-                btn1 = tk.Button(frame2, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: mainMenu(pin)))
+                btn1 = tk.Button(frame2, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: mainMenu(pin,root)))
                 btn2 = tk.Button(frame3, width=1, height=0, font=("arial"),command =  lambda: root.after(2000, lambda: Check_Balance.main(pin)))
 
                 MenuFrame.place(x = 40, y = 2)
@@ -567,14 +567,16 @@ def CheckBalance(pin):
                 frame2.grid(row=1, column=0)
                 frame3.grid(row=1, column=1)
 
-def main():
+def main(root):
     data()
-    EnterPIN()
+    for widget in root.winfo_children():
+        widget.destroy()
+    EnterPIN(root)
     
 
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.state("zoomed")
+    root.configure(bg = "White")
     main(root)
     root.mainloop()
