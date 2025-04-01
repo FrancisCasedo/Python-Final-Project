@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
-import Main_Gui
+import ATMMachine
 def MainMenu():
     for w in r.winfo_children():
         w.destroy()
@@ -17,11 +17,11 @@ def MainMenu():
     instr.pack(pady=10)
 
     # Buttons
-    ea_btn = tk.Button(r, text="1. Enter ATM", font=("Arial", 14), bg="blue", fg="white", width=20, height=2, relief="raised", command=lambda: Main_Gui.main(r))
-    ca_btn = tk.Button(r, text="2. Create Account", font=("Arial", 14), bg="blue", fg="white", width=20, height=2, relief="raised", command=ca)
+    ca_btn = tk.Button(r, text="1. Create Account", font=("Arial", 14), bg="blue", fg="white", width=20, height=2, relief="raised", command=ca)
+    ea_btn = tk.Button(r, text="2. Enter ATM", font=("Arial", 14), bg="blue", fg="white", width=20, height=2, relief="raised", command=lambda: ATMMachine.main(r))
     
-    ea_btn.pack(pady=10)
     ca_btn.pack(pady=10)
+    ea_btn.pack(pady=10)
 
     # Footer
     fl = tk.Label(r, text="Thank you for choosing National Manila Bank!", font=("Arial", 12), bg="#FFFFFE", fg="Blue")
@@ -62,7 +62,6 @@ def ca():
     def Check():
         cn_value = cn_e.get()
         pin_value = pin_e.get()
-        unique = False
         if len(cn_value) != 12:
             messagebox.showinfo("Invalid Input", "Card Number must be 12 digits")
             return
@@ -75,7 +74,7 @@ def ca():
         
         
         sa(Name, cn_e, pin_e, tb_e, ab_e)
-
+    
     sb = tk.Button(r, text="Confirm", font=("Arial", 12), bg="blue", fg="white", command=Check, width=20)
     sb.pack(pady=20)
 
@@ -86,28 +85,30 @@ def ca():
 
 # Function to save account data
 def sa(Name,cn_e, pin_e, tb_e, ab_e):
-    
-    name = Name.get()
-    cn = cn_e.get()
-    pin = pin_e.get()
-    tb = float(tb_e.get())
-    ab = float(ab_e.get())
+    try:
+        name = Name.get()
+        cn = cn_e.get()
+        pin = pin_e.get()
+        tb = float(tb_e.get())
+        ab = float(ab_e.get())
 
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="",
-        database="credit_info"
-    )
-    cursor = db.cursor()
-    update_query = "INSERT INTO CARDINFO (Name, Card_Number, PIN, Total_Balance, Available_Balance) VALUES (%s,%s,%s,%s,%s)"
-    data = (name, cn, pin, tb, ab)
-    cursor.execute(update_query, data)
-    db.commit()
-    db.close()
+        db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="",
+            database="credit_info"
+        )
+        cursor = db.cursor()
+        update_query = "INSERT INTO CARDINFO (Name, Card_Number, PIN, Total_Balance, Available_Balance) VALUES (%s,%s,%s,%s,%s)"
+        data = (name, cn, pin, tb, ab)
+        cursor.execute(update_query, data)
+        db.commit()
+        db.close()
 
-    messagebox.showinfo("Success", "Account created successfully!")
-    MainMenu()
+        messagebox.showinfo("Success", "Account created successfully!")
+        MainMenu()
+    except:
+        messagebox.showinfo("Invalid Input", "Card Number already exists")
 
 
 r = tk.Tk()

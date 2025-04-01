@@ -29,7 +29,7 @@ def main(transaction,Pin_number,Amount,Card_number):
 
 
                     # L A B E L -- - - - -- - - - - - -
-                    lblBank = tk.Label(root, text = "Bank", width = 4, height = 1, font = texts , bg = "white")
+                    lblBank = tk.Label(root, text = "National Manila Bank", width = 18, height = 1, font = texts , bg = "white")
                     lblDatetxt = tk.Label(root, text = "DATE", width = 9, font = texts2, bg = "white")
                     lblDate = tk.Label(root, text = datetime.date.today(), width = 9, font = texts2, bg = "white")
 
@@ -67,7 +67,7 @@ def main(transaction,Pin_number,Amount,Card_number):
                     lblApplicationIDtxt = tk.Label(root, text = "APPLICATION ID:", width = 14, height = 1, font = texts2 , bg = "white")
                     # L A Y O U T  - - - - -- - - -- - - - - - - -
 
-                    lblBank.place(x = 118, y = 20)
+                    lblBank.place(x = 40, y = 20)
 
                     lblDate.place(x = -3, y = 90)
                     lblDatetxt.place(x = -16 , y = 75)

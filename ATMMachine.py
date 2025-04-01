@@ -24,14 +24,14 @@ def button_PIN(value,root):
     global PinCheck
     global asterisk
     if tries != 6:
-        if len(asterisk) == 6:
+        if len(asterisk) > 4:
 
             PinCheck = ""
             asterisk = ""
             lblNumField = tk.Label(root, text = asterisk, width = 14, height = 1, font=("Arial", 11, "bold"), bg = "#FFFFFE")
             lblNumField.place(x=544, y=150)
 
-            lblExceed = tk.Label(root, text="Enter up to 6 digits only....", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
+            lblExceed = tk.Label(root, text="Enter up to 4 digits only....", width=23, height=1, font=("Arial", 10, "bold"), fg = "red", bg = "#FFFFFE")
 
             lblExceed.place(x=555, y=150)
             tries += 1
